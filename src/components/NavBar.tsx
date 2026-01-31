@@ -91,55 +91,64 @@ const NavBar = () => {
     ]
 
     return (
-            <header className='sticky top-0 w-full'>
-                <nav className='bg-sec-green flex justify-between py-[27.99px] px-19.5'>
-                    <Image src={Logo} alt='logo' />
-                    <div className="flex gap-6.25  items-center ">
-                        <TooltipProvider>
-                            <div className="flex gap-6 items-center">
-                                {
-                                    NavBarItems.map((item) => (
-                                        <Tooltip key={item.tooltip}>
-                                            <TooltipTrigger className='cursor-pointer' asChild>
-                                                <button>
-                                                    {item.icon}
-                                                </button>
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                                {item.tooltip}
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    ))
-                                }
-                            </div>
-                        </TooltipProvider>
-                        <div className="rounded-full size-10 bg-white flex">
-                            <p className="text-sec-green font-medium text-[23px] text-center m-auto">D</p>
+        <header className='sticky top-0 w-full'>
+            <nav className='bg-sec-green flex justify-between py-[27.99px] px-19.5'>
+                <Image src={Logo} alt='logo' />
+                <div className="flex gap-6.25  items-center ">
+                    <TooltipProvider>
+                        <div className="flex gap-6 items-center">
+                            {
+                                NavBarItems.map((item) => (
+                                    <Tooltip key={item.tooltip}>
+                                        <TooltipTrigger className='cursor-pointer' asChild>
+                                            <button>
+                                                {item.icon}
+                                            </button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            {item.tooltip}
+                                        </TooltipContent>
+                                    </Tooltip>
+                                ))
+                            }
                         </div>
+                    </TooltipProvider>
+                    <div className="group relative">
+                        <div className={` rounded-full size-10 bg-white flex`}>
+                            <p className="text-sec-green font-medium text-[23px] text-center m-auto z-10">D</p>
+                        </div>
+                        <div className='absolute opacity-0 bg-white -top-1 -left-1 flex group-hover:opacity-100  size-12 transition-all duration-300 ease-in-out rounded-full' >.</div>
+                            <div className=" absolute right-0 rounded-lg shadow-2xs flex-col gap-1 hidden group-hover:flex bg-white p-4 mt-2">
+                                <p className="font-medium ">
+                                    Dylan Frank
+                                </p>
+                                <p className="text-xs text-[#606060]">dylanfran96@gmail.com</p>
+                            </div>
                     </div>
-                </nav>
-                <div className='w-full px-19.5 flex gap-[52.8px] justify-between h-full bg-[#F4F4F5] border-b rounded-none py-3'>
-                    {tabItems.map((item) => {
-                        const isActive =
-                            pathname === item.href ||
-                            (item.href === "/dashboard" && pathname === "/")
-                        return (
-                            <Link
-                                href={item.href}
-                                className={`${isActive ? "font-semibold bg-[#176D5826]  text-[#176D58]" : "text-[#111111]"} text-sm rounded-[8px] flex gap-2 items-center px-[32.5px]  py-1.75`}
-                                key={item.tab}
-                            >
-                                {item.icon} <p>{item.tab}</p>
-                            </Link>)
-                    }
-                    )}
                 </div>
+            </nav>
+            <div className='w-full px-19.5 flex gap-[52.8px] justify-between h-full bg-[#F4F4F5] border-b rounded-none py-3'>
+                {tabItems.map((item) => {
+                    const isActive =
+                        pathname === item.href ||
+                        (item.href === "/dashboard" && pathname === "/")
+                    return (
+                        <Link
+                            href={item.href}
+                            className={`${isActive ? "font-semibold bg-[#176D5826]  text-[#176D58]" : "text-[#111111]"} text-sm rounded-[8px] flex gap-2 items-center px-[32.5px]  py-1.75`}
+                            key={item.tab}
+                        >
+                            {item.icon} <p>{item.tab}</p>
+                        </Link>)
+                }
+                )}
+            </div>
             <CalendarSidebar
                 isOpen={isCalendarOpen}
                 setIsSideBarOpen={() => setIsCalendarOpen(false)}
             />
             <BudgetingModal isDialogOpen={isBudgetOpen} setIsDialogOpen={setBudgetOpen} />
-            </header>
+        </header>
     )
 }
 
